@@ -38,6 +38,10 @@
 	justify-content: space-between;
 }
 
+.hidden{
+	display: none;
+}
+
 body{
 	/*border: 1px solid red;*/
 	padding: 45px;

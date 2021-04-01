@@ -17,34 +17,79 @@ const overlay = document.getElementById('overlay');
 const searchBar = document.getElementById('search-bar');
 const clear = document.getElementById('clear');
 const updateButton = document.getElementById('update-button');
-// var originalForm = $("form").html();
+var originalForm = $("form").html();
 // const alphabet = document.getElementsByClassName("alphabet");
 let employees = [];
 
 // console.log(employees);
 
-// function updateDetails()
-// {
-// 	alert('Ayoun');
-// }
+function updateDetails(id)
+{
+	// alert(id);
+	employees = JSON.parse(localStorage.getItem('EmployeeList'));
+	console.log(employees);
+	let employeeIndex = employees.findIndex(employee => employee.id == id);
+	// alert(employeeIndex);
+	employees[employeeIndex].firstname = document.getElementById('first-name').value;
+	employees[employeeIndex].lastname = document.getElementById('last-name').value;
+	employees[employeeIndex].email = document.getElementById('email').value;
+	employees[employeeIndex].jobtitle = document.getElementById('job-title').value;
+	employees[employeeIndex].office = document.getElementById('office').value;
+	employees[employeeIndex].department = document.getElementById('department').value;
+	employees[employeeIndex].phonenumber = document.getElementById('phone-number').value;
+	employees[employeeIndex].skypeid = document.getElementById('skype-id').value;
+	employees[employeeIndex].preferredname = document.getElementById('preferredname').value;
+	// document.forms[0].reset();
+	localStorage.setItem('EmployeeList', JSON.stringify(employees));
+	console.log(employees);
+	alert("Employee Details have been Updated Successfully");
+	// displayEmployee();
+	updateCounters();
+	window.location.reload();
 
-// function displayEmployeeDetails(data){
-// 	employees = JSON.parse(localStorage.getItem('EmployeeList'));
-// 	let dom = new DOMParser().parseFromString(data, 'text/html');
-// 	const modal = document.getElementById('modal');
-// 	if(modal==null) return;
-// 	document.getElementById('title').innerHTML = "Edit Details";
-// 	document.getElementById('first-name').value = 'khuvkuydvu';
-// 	document.getElementById('last-name').value = 'Ghosh';
-// 	document.getElementById('submit-button').style.display = 'none';
-// 	document.getElementById('form').innerHTML += "<input id='preferredname' name='preferred-name' type='text' placeholder='Enter Preferred Name' value='"
-// 	+dom.getElementsByTagName('h4')[0].innerHTML+
-// 	"'>";
-// 	document.getElementById('form').innerHTML += "<button id='update-button' type='button' onclick='updateDetails()'>Update</button>"
-// 	modal.classList.add('active');
-// 	overlay.classList.add('active');
+}
 
-// }
+function displayEmployeeDetails(data){
+	employees = JSON.parse(localStorage.getItem('EmployeeList'));
+	let employee = new DOMParser().parseFromString(data, 'text/html');
+	const modal = document.getElementById('modal');
+	if(modal==null) return;
+	// document.forms[0].reset();
+	let selectedEmployee = employees.find(selectedEmployee => selectedEmployee.id == employee.getElementById('employeeId').innerHTML);
+	console.log(selectedEmployee);
+	document.getElementById('title').innerHTML = "Edit Details";
+	document.getElementById('first-name').value = selectedEmployee.firstname;
+	// console.log(document.getElementById('first-name').value);
+	document.getElementById('last-name').value = selectedEmployee.lastname;
+	document.getElementById('email').value = selectedEmployee.email;
+	document.getElementById('job-title').value = selectedEmployee.jobtitle;
+	document.getElementById('office').value = selectedEmployee.office;
+	document.getElementById('department').value = selectedEmployee.department;
+	document.getElementById('phone-number').value = selectedEmployee.phonenumber;
+	document.getElementById('skype-id').value = selectedEmployee.skypeid;
+	document.getElementById('submit-button').style.display = 'none';
+
+	// document.getElementById('form').append("<input id='preferredname' name='preferred-name' type='text' placeholder='Enter Preferred Name' value='"
+	// +dom.getElementsByTagName('h4')[0].innerHTML+
+	// "'>");
+	var input = document.createElement('input');
+	input.setAttribute("id","preferredname");
+	input.setAttribute("name", "preferred-name");
+	input.setAttribute("type", "text");
+	input.setAttribute("value", employee.getElementById('employeePreferredName').innerHTML);
+	document.getElementById('form').appendChild(input);
+	var button = document.createElement('button');
+	button.setAttribute("id","update-button");
+	button.setAttribute("type","button");
+	button.setAttribute("onclick","updateDetails("+selectedEmployee.id+");");
+	button.textContent = "Update";
+	document.getElementById('form').appendChild(button);
+	// console.log(employees);
+	// document.getElementById('form').innerHTML += "<button id='update-button' type='button' onclick='updateDetails()'>Update</button>"
+	modal.classList.add('active');
+	overlay.classList.add('active');
+
+}
 
 
 
@@ -90,7 +135,7 @@ clear.addEventListener('click', e=>{
 });
 
 function search(field, value){
-	console.log(field, value);
+	// console.log(field, value);
 return employees.filter( employee=> employee[field].toLowerCase().includes(value.toLowerCase())) || [] 
 }
 
@@ -104,14 +149,17 @@ function displayEmployees(employees){
     "<img src='assets/img/profile/andy_philips.jpg' alt='Andrew Philips' width='55' height='70'>"+
     "</div>" +
     "<div class='h-container'>"+
-    "<h4 class='m-0'>" + 
+    "<h4 id='employeePreferredName' class='m-0'>" + 
     employees[i].preferredname + 
     "</h4>"+
-    "<h5 class='m-0'>" + 
+    "<h5 id='employeeJobTitle' class='m-0'>" + 
     employees[i].jobtitle + 
     "</h5>"+
-    "<h5 class='m-0'>" + 
+    "<h5 id='employeeDepartment' class='m-0'>" + 
     employees[i].department + 
+    "</h5>"+
+    "<h5 id='employeeId' class='m-0 hidden'>" + 
+    employees[i].id + 
     "</h5>"+
     "<div class='flex-row i-container'>"+
     "<i class='fas fa-phone-square-alt'></i>"+
@@ -119,7 +167,6 @@ function displayEmployees(employees){
     "<i class='fas fa-comment'></i>"+
     "<i class='fas fa-star'></i>"+
     "<i class='fas fa-heart'></i>"+
-    "</div>"
     "</div>"+
     "</div>";
     }
@@ -303,7 +350,7 @@ form.addEventListener('submit', (e)=> {
 openModalButtons.forEach(button => {
 	button.addEventListener('click', () => {
 		const modal = document.querySelector(button.dataset.modalTarget);
-		// $("form").html(originalForm);
+		$("form").html(originalForm);
 		openModal(modal);
 	})
 })
@@ -311,7 +358,7 @@ openModalButtons.forEach(button => {
 overlay.addEventListener('click', ()=> {
 	const modals = document.querySelectorAll('.modal.active');
 	modals.forEach(modal => {
-		// $("form").html(originalForm);
+		$("form").html(originalForm);
 		closeModal(modal);
 	})
 })
@@ -319,7 +366,7 @@ overlay.addEventListener('click', ()=> {
 closeModalButtons.forEach(button => {
 	button.addEventListener('click', () => {
 		const modal = button.closest('.modal');
-		// $("form").html(originalForm);
+		$("form").html(originalForm);
 		closeModal(modal);
 	})
 })
