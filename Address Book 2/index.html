@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Javascript Task</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script defer src="assets/javascript/script.js"></script>
+    </head>
+    <body class="m-0">
+    	<header class="flex-row space-between m-0">
+    		<div class="header-left p-0 flex-row">
+    			<figure class="p-0 m-0 flex-row">
+    				<a href="#"><img src="assets/img/logo/logo.png" alt="Saketa Logo" width="180" height="50"></a>
+    			</figure>
+    			<div class="Employee-Directory flex-column">
+    				<h1 class="m-0">Employee Directory</h1>
+    				<p class="m-0">The Ultimate People Directory Experience</p>
+    			</div>
+    		</div>
+    		<div class="header-right p-0 flex-row">
+    			<h1 class="m-0">Welcome, <span>Andrew Philips</span></h1>
+    			<figure class="p-0 m-0 flex-row">
+    				<a href="#"><img src="assets/img/profile/andy_philips.jpg" alt="Andrew Philips" width="55" height="56"></a>
+    			</figure>
+    		</div>
+    	</header>
+    	<main class="p-0 flex-row">
+    		<section class="p-0 left">
+    			<h4 class="m-0">Departments</h4>
+    			<ul class="p-0">
+    				<li id="it" data-value="IT" onclick="filterDepartment(this.dataset.value)"></li>
+    				<li id="humanResource" data-value="Human Resources" onclick="filterDepartment(this.dataset.value)"></li>
+    				<li id="md" data-value="MD" onclick="filterDepartment(this.dataset.value)"></li>
+    				<li id="sales" data-value="Sales" onclick="filterDepartment(this.dataset.value)"></li>
+    			</ul>
+    			<br>
+    			<h4 class="m-0">Offices</h4>
+    			<ul class="p-0">
+    				<li id="Seattle" data-value="Seattle" onclick="filterOffice(this.dataset.value)"></li>
+    				<li id="India" data-value="India" onclick="filterOffice(this.dataset.value)"></li>
+    			</ul>
+    			<br>
+    			<h4 class="m-0">Job Titles</h4>
+    			<ul class="p-0">
+    				<li id="spa" data-value="SharePoint Practise Head" onclick="filterJobTitle(this.dataset.value)"></li>
+    				<li id="ndl" data-value=".Net Development Lead" onclick="filterJobTitle(this.dataset.value)"></li>
+    				<li id="re" data-value="Recruiting Expert" onclick="filterJobTitle(this.dataset.value)"></li>
+    				<li id="bid" data-value="BI Developer" onclick="filterJobTitle(this.dataset.value)"></li>
+    				<li id="ba" data-value="Business Analyst" onclick="filterJobTitle(this.dataset.value)"></li>
+    			</ul>
+    		</section>
+    		<section class="flex-column p-0 right">
+    			<div class="flex-row alphabetical-search space-between">
+    				<div class="alphabet" onclick="filterData('')"><i class="fas fa-user user-icon"></i></div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">A</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">B</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">C</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">D</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">E</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">F</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">G</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">H</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">I</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">J</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">K</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">L</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">M</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">N</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">O</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">P</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">Q</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">R</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">S</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">T</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">U</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">V</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">W</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">X</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">Y</div>
+    				<div class="alphabet" onclick="filterData(this.innerHTML)">Z</div>
+    			</div>
+    			<div class="p-0 flex-row space-between filter-container">
+    				<div class="m-0 p-0 search">
+    			    	<label class="search-label">Search</label>
+                    	<input type="text" placeholder="&#xF002; Enter any keyword" id="search-bar"/>
+                    	<button class="clear" id="clear">Clear</button>
+                    	<label class="filter-label">Filter by</label>
+                    	<select id="filter" name="filter" class="select-filter">
+                        	<option value="preferredname" selected>Preferred Name</option>
+                        	<option value="department">Departments</option>
+                        	<option value="office">Offices</option>
+                        	<option value="title">Job Title</option>
+                    	</select>
+                    </div>
+                    <div class="flex-row flex-center add-employee">
+                        <button data-modal-target="#modal" id="add-employee" class="add-employee">Add Employee</button>
+                        <div class="modal" id="modal">
+                        	<div class="modal-header flex-row flex-center space-between">
+                        		<div class="title" id="title">Enter Employee Details</div>
+                        		<button data-close-button class="close-button">&times;</button>
+                        	</div>
+                        	<div class="modal-body">
+                        		<div id="error" class="flex-column flex-center"></div>
+                        		<form id="form" autocomplete="on" class="flex-column flex-center">
+                        			<input id="first-name" name="first-name" type="text" placeholder="Enter First Name" required>
+                        			<input id="last-name" name="last-name" type="text" placeholder="Enter Last Name" required>
+                        			<!-- <div id="to-add">
+                        			</div> -->
+                        			<input id="email" name="email" type="email" placeholder="Enter Email" required>
+                        			<select id="job-title" name="job-title" required>
+                        				<option value="" disabled selected>Select Job Title</option>
+	    								<option value="SharePoint Practise Head">SharePoint Practise Head</option>
+	    								<option value=".Net Development Lead">.Net Development Lead</option>
+										<option value="Recruiting Expert">Recruiting Expert</option>
+										<option value="BI Developer">BI Developer</option>
+										<option value="Business Analyst">Business Analyst</option>
+  									</select>
+                        			<select id="office" name="office" required>
+                        				<option value="" disabled selected>Select Office</option>
+	    								<option value="Seattle">Seattle</option>
+	    								<option value="India">India</option>
+  									</select>                       		
+                        			<select id="department" name="department" required>
+                        				<option value="" disabled selected>Select Department</option>
+	    								<option value="IT">IT</option>
+	    								<option value="Human Resources">Human Resources</option>
+	    								<option value="MD">MD</option>
+	    								<option value="Sales">Sales</option>
+  									</select>                        		
+                       				<input id="phone-number" name="phone-number" type="number" placeholder="Enter Phone Number" required>
+                        			<input id="skype-id" name="skype-id" type="text" placeholder="Enter Skype ID" required>
+                        			<button type="submit">Submit</button>                                  			
+                        		</form>
+                        	</div>
+                        </div>
+                        <div id="overlay"></div>
+                    </div>
+    			</div>
+    			<p class="Note"><b>Note:</b> Please use the advanced filter options to refine your results.</p>
+    			<div class="employee-container">
+    				<div class="flex-row" id="employee">
+    					<!-- <pre></pre> -->
+    				</div>
+    			</div>
+    		</section>
+    	</main>
+    </body>
+</html>

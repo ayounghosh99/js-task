@@ -1,0 +1,300 @@
+*{
+	box-sizing: border-box;
+}
+
+@font-face{
+	font-family: Interval-Next-Light;
+	src: url('../fonts/Interval-Next-Light.otf');
+}
+
+.red{
+	border: 1px solid red;
+}
+
+.m-0{
+	margin: 0;
+}
+
+.p-0{
+	padding: 0;
+}
+
+.flex-row{
+	display: flex;
+	flex-flow: row wrap;
+}
+
+.flex-column{
+	display: flex;
+	flex-flow: column wrap;
+}
+
+.flex-center{
+	justify-content: center;
+	align-items: center;
+}
+
+.space-between{
+	justify-content: space-between;
+}
+
+body{
+	/*border: 1px solid red;*/
+	padding: 45px;
+	font-family: Interval-Next-Light;
+}
+
+header{
+	/*padding-left: none;*/
+	font-family: Interval-Next-Light;
+	padding-bottom: 25px;
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+header p{
+	font-size: 18px;
+}
+
+header p, header span{
+	color: grey;
+}
+
+div.header-right{
+	align-items: flex-end;
+}
+
+div.header-right figure{
+	margin-left: 15px;
+}
+
+div.header-left figure{
+	margin-right: 30px;
+}
+
+h1{
+	font-size: 35px;
+	color: rgb(108, 194, 248);
+}
+
+figure{
+	align-items: flex-end;
+}
+
+main{
+	margin-top: 44px;
+}
+
+section.left{
+	width: 20%;
+	height: 100%;
+}
+section.right{
+	width: 80%;
+}
+
+ul{
+	list-style-type: none;
+	list-style: none;
+}
+
+li{
+	padding: 1px 0;
+	color: grey;
+	cursor: pointer;
+}
+
+li:hover{
+	color: rgb(77, 176, 246);
+}
+
+div.alphabetical-search div{	 
+	background-color: rgb(77, 176, 246);
+	color: white;
+	padding: 5px 12px;
+	font-size: 20px;
+	font-family: Interval-Next-Light;
+	text-align: center;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+div.alphabet:hover{
+	box-shadow: 0 0 0 2px rgba(0,0,0,0.5);
+	transition: .2s ease;
+}
+
+i.user-icon span{
+	display: none;
+	z-index: -100;
+}
+
+div.filter-container{
+	margin-top: 24px;
+}
+
+label{
+	font-weight: bold;
+}
+
+div.search input{
+	font-family:'Font Awesome 5 Free' !important;
+	margin-left: 5px;
+	height: 38px;
+	width: 250px;
+
+}
+
+div.search button{
+	padding: 11px;
+	text-align: center;
+	width: 80px;
+	background-color: rgb(125, 183, 55);
+	color: white;
+	border: none;
+	margin-left: 33px;
+	cursor: pointer;
+}
+
+label.filter-label{
+	margin-left: 53px;
+}
+
+select.select-filter{
+	margin-left: 13px;
+	padding: 13px;
+	text-align: center;
+	width: 172px;
+	color: grey;
+}
+
+button.add-employee{
+	font-weight: bold;
+	font-size: 18px;
+	width: 144px;
+	height: 38px;
+	color: white;
+	background-color: rgb(77, 176, 246);
+	border: none;
+	cursor: pointer;
+}
+
+p.Note{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+div.employee-container{
+	padding: 24px;
+	height: 512px;
+	overflow: scroll;
+	border: 1px solid rgb(0,0,0,0.2);
+}
+
+div.modal{
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	transition: 200ms ease-in-out;
+	border: 1px solid black;
+	border-radius: 10px;
+	z-index: 10;
+	background-color: white;
+	width: 500px;
+	max-width: 80%;
+}
+
+div.modal.active{
+	transform: translate(-50%, -50%) scale(1);
+}
+
+div.modal-header{
+	padding: 10px 15px;
+	border-bottom: 1px solid black;
+}
+
+div.modal-header div.title{
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+
+div.modal-header button.close-button{
+	cursor: pointer;
+	border: none;
+	outline: none;
+	background: none;
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+
+div.modal-body{
+	padding: 10px 15px;
+}
+
+#overlay{
+	position: fixed;
+	opacity: 0;
+	transition: 200ms ease-in-out;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgb(0,0,0,.5);
+	pointer-events: none;
+}
+
+#overlay.active{
+	opacity: 1;
+	pointer-events: all;
+}
+
+form input,select{
+	width: 50%;
+	margin: 10px;
+	cursor: pointer;
+}
+
+div.error{
+	color: red;
+}
+
+div.employee{
+    background-color: #E9E8E8;
+    /*margin: 5px;*/
+    /*padding: 10px;*/
+    color: #969595;
+    width: 240px;
+    height: 86px;
+    padding: 5px;
+    margin-right: 15px;
+    margin-bottom: 23px;
+    cursor: pointer;
+}
+
+.employee .h-container{
+/*	width: 180px;*/
+	padding-left: 10px;
+}
+
+.employee .i-container, .employee .h-container{
+	width: 70%;
+}
+
+.i-container{
+	margin-top: 5px;
+}
+
+.i-container i{
+	font-size: 10px;
+	margin-right: 5px;
+}
+
+.employee img{
+    /*height: 80px;
+    width: 80px;*/
+    /*margin-right: 10px;*/
+}
+.employee h4{
+    /*margin-bottom: 5px;*/
+    color: #626262;
+}
