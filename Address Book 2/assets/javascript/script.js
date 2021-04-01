@@ -314,7 +314,8 @@ const addEmployee = (emp) => {
 
 	displayEmployee();
 	updateCounters();
-	// window.location.reload();
+	alert("Employee has been added successfully");
+	window.location.reload();
 }
 
 
